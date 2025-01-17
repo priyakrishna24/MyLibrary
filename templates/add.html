@@ -1,21 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Add Book</title>
-  </head>
-  <body>
-    <form action="{{url_for('add')}}" method="POST">
-      <label>Book Name</label>
-      <input name="title" type="text" />
-      <label>Book Author</label>
-      <input name="author" type="text" />
-      <label>Rating</label>
-      <input name="rating"type="text" />
-      <button type="submit">Add Book</button>
-    </form>
-    <a href="{{url_for('home')}}">Back to home</a>
-  </body>
-</html>
+{% extends "base.html" %}  <!-- This extends the base template (base.html), allowing you to reuse the layout -->
 
+{% block content %}  <!-- Start of the content block that will be inserted into the base layout -->
 
+<!-- Container to center the form on the page using Bootstrap grid -->
+<div class="row justify-content-center">
+    <!-- Column to control the form width on medium screens and above -->
+    <div class="col-md-6">
+        <!-- Card component from Bootstrap for the form's container -->
+        <div class="card">
+            <!-- Card header with a title for the form -->
+            <div class="card-header">
+                <h1 class="h3 mb-0">Add New Book</h1>
+            </div>
+            <!-- Card body that contains the form -->
+            <div class="card-body">
+                <!-- Form to submit data to the server -->
+                <form action="{{ url_for('add') }}" method="POST">
+                    <!-- Book Name input field -->
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Book Name</label>
+                        <input type="text" class="form-control" name="title" id="title" required>
+                    </div>
+                    <!-- Book Author input field -->
+                    <div class="mb-3">
+                        <label for="author" class="form-label">Book Author</label>
+                        <input type="text" class="form-control" name="author" id="author" required>
+                    </div>
+                    <!-- Book Rating input field -->
+                    <div class="mb-3">
+                        <label for="rating" class="form-label">Rating</label>
+                        <input type="number" class="form-control" name="rating" id="rating" step="0.1" min="0" max="10" required>
+                    </div>
+                    <!-- Submit button for adding the book -->
+                    <button type="submit" class="btn btn-success">Add Book</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}  <!-- End of the content block -->

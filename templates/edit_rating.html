@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h1 class="h3 mb-0">Edit Rating</h1>
+            </div>
+            <div class="card-body">
+                <h2 class="h4 mb-3">Book: {{ book.title }}</h2>
+                <form action="{{ url_for('edit') }}" method="POST">
+                    <div class="mb-3">
+                        <label for="rating" class="form-label">New Rating</label>
+                        <input type="number" class="form-control" name="rating" id="rating" value="{{ book.rating }}" step="0.1" min="0" max="10" required>
+                        <input type="hidden" name="id" value="{{ book.id }}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Change Rating</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
